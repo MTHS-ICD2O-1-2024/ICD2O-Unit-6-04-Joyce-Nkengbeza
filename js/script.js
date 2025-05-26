@@ -3,32 +3,30 @@
 // Created by: Joyce Nkengbeza
 // Created on: Feb 2025
 // This file contains the JS functions for index.html
-'use strict'
-
+"use strict"
 
 /**
  * Check servie worker.
  */
 if (navigator.serviceWorker) {
-  navigator.serviceWorker.register("/ICD2O-Unit-6-01-Joyce-Nkengbeza/sw.js", {
-    scope: "/ICD2O-Unit-6-01-Joyce-Nkengbeza/",
+  navigator.serviceWorker.register("/ICD2O-Unit-6-04-Joyce-Nkengbeza/sw.js", {
+    scope: "/ICD2O-Unit-6-04-Joyce-Nkengbeza/",
   })
 }
- //This function multiples numbers
+window.onload = function () {
+  // this calculates volume of a sphere
 
-function calculate() {
+  const params = new URLSearchParams(document.location.search)
 
- // input
-  let firstNumber = parseFloat(document.getElementById("numberone").value)
-  const secondNumber = parseFloat(document.getElementById("numbertwo").value)
-  let answer = 0
+  // input
+  const radius = params.get("radius")
 
   // process
-  while (firstNumber >= 1) {
-    answer = answer + secondNumber
-  firstNumber = firstNumber - 1;
-  }
+  const volume = (4 / 3) * Math.PI * (radius * radius * radius)
+  const dimension = "<ul>\n<li> radius = " + radius + " mm</li>\n</ul>"
+
   // output
-  document.getElementById("results").innerHTML =
-  'The number is: ' + answer
+  document.getElementById("dimension").innerHTML = dimension
+  document.getElementById("volume").innerHTML =
+    "volume is: " + volume.toFixed(3) + " mm³"
 }
